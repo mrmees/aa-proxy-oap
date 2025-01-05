@@ -11,7 +11,8 @@ Target kernel: 5.10.110
 
 ```
 sudo modprobe configs
-sudo cat /proc/config.gz | gunzip > running.config
+cd ~
+sudo cat /proc/config.gz | gunzip > /~/running.config
 ```
 
 Then grep the `running.config` for the above configs:
@@ -55,11 +56,13 @@ These **must** be done on target, i.e. on the **Host** system, RPI-4B, in order 
 
 ```
 sudo apt install bc bison flex libssl-dev make
+cd ~
 git clone --branch rpi-5.10.y https://github.com/raspberrypi/linux
 ```
 Then, you need to apply the necessary patch for the `accessory` function. In constrast to `AAWirelessDongle`, we don't need the `0002-Remove-cyclic-dependency-between-f_accessory-and-lib.patch`.  
 The patch should be able to be applied on top of the `rpi-5.10.y` kernel source, by running:
 ```
+wget https://raw.githubusercontent.com/KreAch3R/aa-proxy-oap/refs/heads/main/docs/kernel/patches/0001-Backport-and-apply-patches-for-Android-Accessory-mod.patch
 git am < 0001-Backport-and-apply-patches-for-Android-Accessory-mod.patch
 ```
 
