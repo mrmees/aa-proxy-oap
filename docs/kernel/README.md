@@ -12,7 +12,7 @@ Target kernel: 5.10.110
 ```
 sudo modprobe configs
 cd ~
-sudo cat /proc/config.gz | gunzip > /~/running.config
+sudo cat /proc/config.gz | gunzip > running.config
 ```
 
 Then grep the `running.config` for the above configs:
